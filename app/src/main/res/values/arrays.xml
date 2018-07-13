@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string-array name="array_type_options">
+        <item>none</item>
+        <item>main course</item>
+        <item>side dish</item>
+        <item>dessert</item>
+        <item>salad</item>
+        <item>breakfast</item>
+        <item>soup</item>
+        <item>beverage</item>
+        <item>drink</item>
+
+         </string-array>
+    <string-array name="array_cuisine_options">
+        <item>none</item>
+        <item>japanese</item>
+        <item>chinese</item>
+        <item>korean</item>
+        <item>vietnamese</item>
+        <item>thai</item>
+        <item>indian</item>
+        <item>british</item>
+        <item>italian</item>
+        <item>mexican</item>
+        <item>caribbean</item>
+
+
+    </string-array>
+</resources>

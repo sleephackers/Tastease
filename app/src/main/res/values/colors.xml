@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="mcolorPrimary">#F0514B</color>
+
+    <color name="mcolorPrimaryDark">#C0403C</color>
+
+    <color name="colorAccent">#F0514B</color>
+
+    <color name="catalogColorPrimary">#558B2F</color>
+
+    <color name="catalogColorPrimaryDark">#33691E</color>
+</resources>

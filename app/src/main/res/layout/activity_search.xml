@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".ProfileActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:text="NAME:"
+            android:layout_margin="5dp"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:layout_weight="1"
+            android:textColor="@color/mcolorPrimary"
+            />
+
+
+        <EditText
+            android:id="@+id/name"
+            android:hint="Enter"
+            android:layout_weight="2.5"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_width="0dp"
+            android:textAlignment="center"
+            android:inputType="textCapWords"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:text="TYPE:"
+            android:layout_margin="5dp"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:layout_weight="1"
+            android:textColor="@color/mcolorPrimary"
+            />
+
+
+        <Spinner
+            android:id="@+id/spinner_type"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="2.5"
+            android:layout_marginRight="10dp"
+            android:spinnerMode="dropdown"/>
+
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:text="CUISINE:"
+            android:layout_margin="5dp"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:layout_weight="1"
+            android:textColor="@color/mcolorPrimary"
+            />
+
+
+        <Spinner
+            android:id="@+id/spinner_cuisine"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="2.5"
+            android:layout_marginRight="10dp"
+            android:spinnerMode="dropdown"/>
+
+
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:text="SEARCH"/>
+
+
+</LinearLayout>
