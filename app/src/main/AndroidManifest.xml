@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.android.tastease">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/iconround"
@@ -20,7 +23,11 @@
             android:name=".CatalogActivity"
             android:theme="@style/CatalogTheme" />
         <activity android:name=".SearchActivity" />
-        <activity android:name=".ResultVideoActivity"></activity>
+        <activity
+            android:name=".ResultVideoActivity"
+            android:theme="@style/CatalogTheme" />
+        <activity android:name=".ResultFoodActivity" />
+        <activity android:name=".RecipeInfoActivity"></activity>
     </application>
 
 </manifest>

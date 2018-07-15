@@ -85,10 +85,10 @@
                     android:layout_height="wrap_content" />
 
             <RelativeLayout
+                android:id="@+id/steak"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
         <ImageView
-            android:id="@+id/steaks"
             android:src="@drawable/steaks"
             android:adjustViewBounds="true"
             android:layout_width="match_parent"
@@ -103,10 +103,10 @@
                     android:layout_height="wrap_content" />
             </RelativeLayout>
             <RelativeLayout
+                android:id="@+id/chicken"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <ImageView
-                    android:id="@+id/chicken"
                     android:src="@drawable/chicken"
                     android:adjustViewBounds="true"
                     android:layout_width="match_parent"
@@ -121,10 +121,10 @@
                     android:layout_height="wrap_content" />
             </RelativeLayout>
             <RelativeLayout
+                android:id="@+id/eggs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <ImageView
-                    android:id="@+id/eggs"
                     android:src="@drawable/eggs"
                     android:adjustViewBounds="true"
                     android:layout_width="match_parent"

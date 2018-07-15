@@ -13,6 +13,9 @@ import android.view.View;
 
 import com.example.android.tastease.RetrofitCalls.ApiClient;
 import com.example.android.tastease.RetrofitCalls.ApiInterface;
+import com.example.android.tastease.food.BodyFood;
+import com.example.android.tastease.food.FoodResponse;
+import com.example.android.tastease.food.Result;
 import com.example.android.tastease.video.Video;
 import com.example.android.tastease.video.VideoResponse;
 import com.squareup.picasso.Picasso;
@@ -23,43 +26,35 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ResultVideoActivity extends AppCompatActivity {
+public class ResultFoodActivity extends AppCompatActivity {
     public static final String MASHAPE_KEY = "PGIXJ1K3p3mshZ2ZRepaPon5MGYup1oY7h3jsn5nAD6hvZDodE";
     // public static final String MASHAPE_KEY = "BUh8bFqDuDmshI1JDP9FB4PfA22Gp1zKGPwjsnJ8g6SqbNv84x";
     public static final String APP_JSON_CONTENT_TYPE_HEADER = "application/json";
-    String name, include, exclude;
+    public static final String JSON_ACCEPT_HEADER = "application/json";
+    String foodname;
     ApiInterface apiInterface;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
-    private List<Video> videos;
-    public static final String JSON_ACCEPT_HEADER = "application/json";
-    private MyRecyclerAdapter adapter;
+    private BodyFood bodyFood;
+    private MyFoodRecyclerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result_video);
         Bundle extras = getIntent().getExtras();
-        name = extras.getString("name");
-        include = extras.getString("include");
-        exclude = extras.getString("exclude");
+        foodname = extras.getString("foodname");
+        Log.e(ResultFoodActivity.class.getSimpleName(), "foodname:" + foodname);
+
         recyclerView = (RecyclerView) findViewById(R.id.video_result);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
-        Log.e(ResultVideoActivity.class.getSimpleName(), "eeeeee: " + name + " " + include + " " + exclude);
         fetchVideos();
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + videos.get(position).getYouTubeId()));
-                Intent webIntent = new Intent(Intent.ACTION_VIEW,
-                        Uri.parse("http://www.youtube.com/watch?v=" + videos.get(position).getYouTubeId()));
-                try {
-                    startActivity(appIntent);
-                } catch (ActivityNotFoundException ex) {
-                    startActivity(webIntent);
-                }
+
             }
 
 
@@ -68,27 +63,24 @@ public class ResultVideoActivity extends AppCompatActivity {
             }
         }));
     }
+
     public void fetchVideos() {
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
-        Call<VideoResponse> call = apiInterface.getRecipeVideos(MASHAPE_KEY, APP_JSON_CONTENT_TYPE_HEADER, JSON_ACCEPT_HEADER, name, exclude, include, "1");
+        Call<BodyFood> call = apiInterface.getFoodRecipe(MASHAPE_KEY, APP_JSON_CONTENT_TYPE_HEADER, JSON_ACCEPT_HEADER, foodname, "2");
 
-        call.enqueue(new Callback<VideoResponse>() {
+        call.enqueue(new Callback<BodyFood>() {
             @Override
-            public void onResponse(Call<VideoResponse> call, Response<VideoResponse> response) {
-                Log.e(ResultVideoActivity.class.getSimpleName(),"STATUS: "+response.code());
-                Log.e(ResultVideoActivity.class.getSimpleName(), "RESPONSE EEEE: " + response.body().getVideos().get(0).getYouTubeId());
-                videos = response.body().getVideos();
-                adapter = new MyRecyclerAdapter(videos, ResultVideoActivity.this);
-                Log.e(ResultVideoActivity.class.getSimpleName(), "RESPONSE: " + response.body().getVideos().get(0).getYouTubeId());
+            public void onResponse(Call<BodyFood> call, Response<BodyFood> response) {
+                Log.e(ResultFoodActivity.class.getSimpleName(), "STATUS: " + response.code());
+                bodyFood = response.body();
+                adapter = new MyFoodRecyclerAdapter(bodyFood, ResultFoodActivity.this);
                 recyclerView.setAdapter(adapter);
-                }
-
-
+            }
 
 
             @Override
-            public void onFailure(Call<VideoResponse> call, Throwable t) {
-                Log.e(ResultVideoActivity.class.getSimpleName(), t.toString());
+            public void onFailure(Call<BodyFood> call, Throwable t) {
+                Log.e(ResultFoodActivity.class.getSimpleName(), t.toString());
             }
         });
     }
