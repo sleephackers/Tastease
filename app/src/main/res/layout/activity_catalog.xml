@@ -7,7 +7,7 @@
     android:background="#FFFFFF"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".CatalogActivity">
+    tools:context=".activities.CatalogActivity">
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -28,6 +28,7 @@
             android:text="Shake 'N' Make\nSearch by ingredients"
             android:gravity="center_horizontal"/>
         <TextView
+            android:id="@+id/randomrecipe"
             android:textColor="#FFFFFF"
             android:padding="5dp"
             android:textStyle="bold"
@@ -53,6 +54,7 @@
                 android:layout_height="wrap_content">
             <LinearLayout
                 android:layout_width="match_parent"
+                android:id="@+id/trivia"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal"
                 android:layout_height="wrap_content">
@@ -66,13 +68,15 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Click for a hint!"
+                    android:text="Click for a fun fact!"
                     android:textSize="17sp"
                     android:textStyle="bold"/>
                 </LinearLayout>
                 <TextView
+                    android:id="@+id/triviaText"
+                    android:layout_margin="5dp"
+                    android:textSize="15sp"
                     android:layout_width="match_parent"
-                    android:id="@+id/hint"
                     android:layout_gravity="center_horizontal"
                     android:layout_height="wrap_content" />
             </LinearLayout>

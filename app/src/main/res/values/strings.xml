@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Tastease</string>
     <string name="share_info">Discover and share the joy of cooking with your friends and family in Tastease</string>
+    <string name="sourcetext">For more Info: <u> Go to source page </u></string>
 </resources>

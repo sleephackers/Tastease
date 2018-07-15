@@ -1,7 +1,6 @@
-package com.example.android.tastease;
+package com.example.android.tastease.activities;
 
 import android.content.ActivityNotFoundException;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -11,11 +10,13 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
+import com.example.android.tastease.MyRecyclerAdapter;
+import com.example.android.tastease.R;
+import com.example.android.tastease.RecyclerTouchListener;
 import com.example.android.tastease.RetrofitCalls.ApiClient;
 import com.example.android.tastease.RetrofitCalls.ApiInterface;
 import com.example.android.tastease.video.Video;
 import com.example.android.tastease.video.VideoResponse;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 

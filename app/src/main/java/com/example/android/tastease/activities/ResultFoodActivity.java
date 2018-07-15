@@ -1,9 +1,6 @@
-package com.example.android.tastease;
+package com.example.android.tastease.activities;
 
-import android.content.ActivityNotFoundException;
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,16 +8,12 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
+import com.example.android.tastease.MyFoodRecyclerAdapter;
+import com.example.android.tastease.R;
+import com.example.android.tastease.RecyclerTouchListener;
 import com.example.android.tastease.RetrofitCalls.ApiClient;
 import com.example.android.tastease.RetrofitCalls.ApiInterface;
 import com.example.android.tastease.food.BodyFood;
-import com.example.android.tastease.food.FoodResponse;
-import com.example.android.tastease.food.Result;
-import com.example.android.tastease.video.Video;
-import com.example.android.tastease.video.VideoResponse;
-import com.squareup.picasso.Picasso;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -50,11 +43,16 @@ public class ResultFoodActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
-        fetchVideos();
+        fetchFood();
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-
+                Intent intent = new Intent(ResultFoodActivity.this, RecipeInfoActivity.class);
+                Bundle extras = new Bundle();
+                extras.putString("id", bodyFood.getResults().get(position).getId());
+                Log.e(ResultFoodActivity.class.getSimpleName(), "Clickeddddddddd" + extras);
+                intent.putExtras(extras);
+                startActivity(intent);
             }
 
 
@@ -64,9 +62,9 @@ public class ResultFoodActivity extends AppCompatActivity {
         }));
     }
 
-    public void fetchVideos() {
+    public void fetchFood() {
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
-        Call<BodyFood> call = apiInterface.getFoodRecipe(MASHAPE_KEY, APP_JSON_CONTENT_TYPE_HEADER, JSON_ACCEPT_HEADER, foodname, "2");
+        Call<BodyFood> call = apiInterface.getFoodRecipe(MASHAPE_KEY, APP_JSON_CONTENT_TYPE_HEADER, JSON_ACCEPT_HEADER, foodname, "1");
 
         call.enqueue(new Callback<BodyFood>() {
             @Override

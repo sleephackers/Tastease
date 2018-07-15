@@ -6,7 +6,7 @@
     android:background="#FFF8E1"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".ResultVideoActivity">
+    tools:context=".activities.ResultVideoActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/video_result"

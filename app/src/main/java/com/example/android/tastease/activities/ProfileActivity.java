@@ -1,6 +1,5 @@
-package com.example.android.tastease;
+package com.example.android.tastease.activities;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,7 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+
+import com.example.android.tastease.R;
 
 public class ProfileActivity extends AppCompatActivity {
     EditText allergies,username,emailid;

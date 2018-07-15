@@ -1,4 +1,4 @@
-package com.example.android.tastease;
+package com.example.android.tastease.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.android.tastease.R;
 
 public class MainActivity extends AppCompatActivity {
     TextView profile;
