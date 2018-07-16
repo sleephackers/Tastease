@@ -26,11 +26,11 @@ public class CatalogActivity extends AppCompatActivity {
     // public static final String MASHAPE_KEY = "BUh8bFqDuDmshI1JDP9FB4PfA22Gp1zKGPwjsnJ8g6SqbNv84x";
     public static final String APP_JSON_CONTENT_TYPE_HEADER = "application/json";
     public static final String JSON_ACCEPT_HEADER = "application/json";
-    TextView prof, triviaText, random;
+    TextView prof, triviaText, random, ingredientsearch;
     ApiInterface apiInterface;
     ImageView videorecipes;
     LinearLayout trivia;
-    RelativeLayout steak, chicken, eggs;
+    RelativeLayout steak, chicken, eggs, italian, chinese, indian, korean, mealplan;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,9 +40,15 @@ public class CatalogActivity extends AppCompatActivity {
         triviaText = findViewById(R.id.triviaText);
         trivia = (LinearLayout) findViewById(R.id.trivia);
         chicken = findViewById(R.id.chicken);
+        italian = findViewById(R.id.italian);
+        chinese = findViewById(R.id.chinese);
+        indian = findViewById(R.id.indian);
+        korean = findViewById(R.id.korean);
         eggs = findViewById(R.id.eggs);
         prof=findViewById(R.id.profilecat);
         random = findViewById(R.id.randomrecipe);
+        ingredientsearch = findViewById(R.id.ingredientsearch);
+        mealplan = findViewById(R.id.mealplan);
         trivia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,6 +107,63 @@ public class CatalogActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        italian.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CatalogActivity.this, ResultFoodActivity.class);
+                Bundle extras = new Bundle();
+                extras.putString("foodname", "italian");
+                intent.putExtras(extras);
+                startActivity(intent);
+            }
+        });
+        chinese.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CatalogActivity.this, ResultFoodActivity.class);
+                Bundle extras = new Bundle();
+                extras.putString("foodname", "chinese");
+                intent.putExtras(extras);
+                startActivity(intent);
+            }
+        });
+        indian.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CatalogActivity.this, ResultFoodActivity.class);
+                Bundle extras = new Bundle();
+                extras.putString("foodname", "indian");
+                intent.putExtras(extras);
+                startActivity(intent);
+            }
+        });
+        korean.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CatalogActivity.this, ResultFoodActivity.class);
+                Bundle extras = new Bundle();
+                extras.putString("foodname", "korean");
+                intent.putExtras(extras);
+                startActivity(intent);
+            }
+        });
+        mealplan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CatalogActivity.this, MealPlanSearch.class);
+                startActivity(intent);
+            }
+        });
+        ingredientsearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CatalogActivity.this, IngredientSearch.class);
+                startActivity(intent);
+            }
+        });
+
+
+
     }
 
     private void fetchTrivia() {

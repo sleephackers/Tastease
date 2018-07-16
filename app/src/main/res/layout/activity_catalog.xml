@@ -19,6 +19,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
+            android:id="@+id/ingredientsearch"
             android:layout_width="0dp"
             android:padding="5dp"
             android:layout_weight="1"
@@ -143,10 +144,11 @@
                     android:layout_height="wrap_content" />
             </RelativeLayout>
             <RelativeLayout
+                android:id="@+id/italian"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <ImageView
-                    android:id="@+id/italian"
                     android:src="@drawable/italian"
                     android:adjustViewBounds="true"
                     android:layout_width="match_parent"
@@ -161,10 +163,11 @@
                     android:layout_height="wrap_content" />
             </RelativeLayout>
             <RelativeLayout
+                android:id="@+id/chinese"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <ImageView
-                    android:id="@+id/chinese"
                     android:src="@drawable/chinese"
                     android:adjustViewBounds="true"
                     android:layout_width="match_parent"
@@ -179,10 +182,11 @@
                     android:layout_height="wrap_content" />
             </RelativeLayout>
             <RelativeLayout
+                android:id="@+id/indian"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <ImageView
-                    android:id="@+id/indian"
                     android:src="@drawable/indian"
                     android:adjustViewBounds="true"
                     android:layout_width="match_parent"
@@ -197,10 +201,10 @@
                     android:layout_height="wrap_content" />
             </RelativeLayout>
             <RelativeLayout
+                android:id="@+id/korean"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <ImageView
-                    android:id="@+id/korean"
                     android:src="@drawable/korean"
                     android:adjustViewBounds="true"
                     android:layout_width="match_parent"
@@ -232,29 +236,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
+                android:id="@+id/mealplan"
                 android:layout_height="wrap_content">
                 <ImageView
-                    android:id="@+id/wine"
-                    android:src="@drawable/wine"
-                    android:adjustViewBounds="true"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:text="WINE"
-                    android:textColor="#FFFFFF"
-                    android:textStyle="bold"
-                    android:textSize="25sp"
-                    android:layout_centerInParent="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:id="@+id/mealplan"
                     android:src="@drawable/random"
                     android:adjustViewBounds="true"
                     android:layout_width="match_parent"

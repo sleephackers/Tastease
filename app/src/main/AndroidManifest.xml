@@ -29,12 +29,13 @@
         <activity android:name=".activities.ResultFoodActivity" />
         <activity
             android:name=".activities.RecipeInfoActivity"
-            android:theme="@style/CatalogTheme">
-
-        </activity>
+            android:theme="@style/CatalogTheme" />
         <activity
             android:name=".activities.RandomFoodActivity"
             android:theme="@style/CatalogTheme" />
+        <activity android:name=".activities.MealPlanSearch" />
+        <activity android:name=".activities.IngredientSearch"></activity>
+        <activity android:name=".activities.ResultIngredientActivity" />
     </application>
 
 </manifest>

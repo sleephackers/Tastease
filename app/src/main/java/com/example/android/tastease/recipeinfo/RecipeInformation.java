@@ -2,7 +2,6 @@ package com.example.android.tastease.recipeinfo;
 
 import java.util.List;
 
-import com.example.android.tastease.trivia.WinePairing;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
