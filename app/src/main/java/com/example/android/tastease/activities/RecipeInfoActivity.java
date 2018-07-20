@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.android.tastease.MyRecyclerAdapter;
 import com.example.android.tastease.R;
@@ -35,6 +36,7 @@ public class RecipeInfoActivity extends AppCompatActivity {
     ImageView imageView;
     TextView title, time, servings, instructions, source, ingredients;
     ApiInterface apiInterface;
+    Boolean flag=false;
     RecipeInformation recipeInformation;
 
     @Override
@@ -54,9 +56,14 @@ public class RecipeInfoActivity extends AppCompatActivity {
         source.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Uri sourceUri = Uri.parse(recipeInformation.getSourceUrl());
-                Intent websiteIntent = new Intent(Intent.ACTION_VIEW, sourceUri);
-                startActivity(websiteIntent);
+                if(flag) {
+                    Uri sourceUri = Uri.parse(recipeInformation.getSourceUrl());
+                    Intent websiteIntent = new Intent(Intent.ACTION_VIEW, sourceUri);
+                    startActivity(websiteIntent);
+                }
+                else
+                    Toast.makeText(RecipeInfoActivity.this,"Pleas wait! Content loading :)", Toast.LENGTH_LONG).show();
+
             }
         });
     }
@@ -70,6 +77,7 @@ public class RecipeInfoActivity extends AppCompatActivity {
             public void onResponse(Call<RecipeInformation> call, Response<RecipeInformation> response) {
                 Log.e(ResultVideoActivity.class.getSimpleName(), "STATUS: " + response.body().getInstructions());
                 recipeInformation = response.body();
+                if(response.body()!=null) flag=true;
                 title.setText(recipeInformation.getTitle());
                 time.setText(recipeInformation.getReadyInMinutes().toString() + "  Min");
                 servings.setText(recipeInformation.getServings().toString());

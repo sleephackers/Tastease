@@ -82,7 +82,7 @@ public class ResultVideoActivity extends AppCompatActivity {
                 adapter = new MyRecyclerAdapter(videos, ResultVideoActivity.this);
                 Log.e(ResultVideoActivity.class.getSimpleName(), "RESPONSE: " + response.body().getVideos().get(0).getYouTubeId());
                 recyclerView.setAdapter(adapter);
-                }
+            }
 
 
 

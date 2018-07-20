@@ -218,24 +218,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:id="@+id/vegan"
-                    android:src="@drawable/vegan"
-                    android:adjustViewBounds="true"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:text="VEGAN"
-                    android:textColor="#FFFFFF"
-                    android:textStyle="bold"
-                    android:textSize="25sp"
-                    android:layout_centerInParent="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"

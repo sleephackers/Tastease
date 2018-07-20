@@ -1,8 +1,10 @@
 package com.example.android.tastease.activities;
 
 import android.app.AlarmManager;
+import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
@@ -18,14 +20,27 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android.tastease.R;
+import com.example.android.tastease.RetrofitCalls.ApiClient;
+import com.example.android.tastease.RetrofitCalls.ApiInterface;
+import com.example.android.tastease.trivia.TriviaBody;
 
 import java.util.Calendar;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class MainActivity extends AppCompatActivity {
+    public static final String MASHAPE_KEY = "PGIXJ1K3p3mshZ2ZRepaPon5MGYup1oY7h3jsn5nAD6hvZDodE";
+    // public static final String MASHAPE_KEY = "BUh8bFqDuDmshI1JDP9FB4PfA22Gp1zKGPwjsnJ8g6SqbNv84x";
+    public static final String APP_JSON_CONTENT_TYPE_HEADER = "application/json";
+    public static final String JSON_ACCEPT_HEADER = "application/json";
+    ApiInterface apiInterface;
     TextView profile;
     Button skip;
     NetworkInfo networkInfo;
     LinearLayout fb,gmail;
+    String fact="";
     String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,14 +52,15 @@ public class MainActivity extends AppCompatActivity {
 //        calendar.set(Calendar.HOUR_OF_DAY, 19);
 //        calendar.set(Calendar.MINUTE, 00);
 //        calendar.set(Calendar.SECOND, 00);
-
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,System.currentTimeMillis(), 1000*60*5, pendingIntent);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,System.currentTimeMillis()+1000*3, 1000*60 , pendingIntent);
         super.onCreate(savedInstanceState);
+        fetchTrivia();
         setContentView(R.layout.activity_main);
         profile=findViewById(R.id.profile_settings);
         skip=findViewById(R.id.skip);
         fb=findViewById(R.id.fb);
         gmail=findViewById(R.id.gmail);
+
         fb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,5 +130,31 @@ public class MainActivity extends AppCompatActivity {
         Log.e(MainActivity.class.getSimpleName(),"Loadinggg"+ username);
 
 
+    }
+    private void fetchTrivia() {
+        apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
+        Call<TriviaBody> call = apiInterface.getTrivia(MASHAPE_KEY, APP_JSON_CONTENT_TYPE_HEADER, JSON_ACCEPT_HEADER);
+
+        call.enqueue(new Callback<TriviaBody>() {
+            @Override
+            public void onResponse(Call<TriviaBody> call, Response<TriviaBody> response) {
+                Log.e(ResultFoodActivity.class.getSimpleName(), "STATUS: " + response.code());
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+                alertDialogBuilder.setTitle("Food for Thought");
+                alertDialogBuilder.setMessage(response.body().getText()).setCancelable(false).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });;
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+            }
+
+
+            @Override
+            public void onFailure(Call<TriviaBody> call, Throwable t) {
+                Log.e(ResultFoodActivity.class.getSimpleName(), t.toString());
+            }
+        });
     }
 }
