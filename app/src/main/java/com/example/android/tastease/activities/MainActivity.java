@@ -5,6 +5,8 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,6 +24,7 @@ import java.util.Calendar;
 public class MainActivity extends AppCompatActivity {
     TextView profile;
     Button skip;
+    NetworkInfo networkInfo;
     LinearLayout fb,gmail;
     String username;
     @Override
@@ -30,11 +33,12 @@ public class MainActivity extends AppCompatActivity {
         PendingIntent pendingIntent = PendingIntent.getBroadcast
                 (this, 0, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 19);
-        calendar.set(Calendar.MINUTE, 00);
-        calendar.set(Calendar.SECOND, 00);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 1000*60 , pendingIntent);
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.set(Calendar.HOUR_OF_DAY, 19);
+//        calendar.set(Calendar.MINUTE, 00);
+//        calendar.set(Calendar.SECOND, 00);
+
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,System.currentTimeMillis(), 1000*60*5, pendingIntent);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         profile=findViewById(R.id.profile_settings);
@@ -85,8 +89,21 @@ public class MainActivity extends AppCompatActivity {
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,CatalogActivity.class);
-                startActivity(intent);
+                ConnectivityManager connMgr = (android.net.ConnectivityManager)
+                        getSystemService(Context.CONNECTIVITY_SERVICE);
+
+                // Get details on the currently active default data network
+                networkInfo = connMgr.getActiveNetworkInfo();
+
+                // If there is a network connection, fetch data
+                if (networkInfo != null && networkInfo.isConnected()) {
+                    Intent intent = new Intent(MainActivity.this, CatalogActivity.class);
+                    startActivity(intent);
+                }
+                else
+                    Toast.makeText(MainActivity.this,"Please Check Connectivity Status", Toast.LENGTH_LONG).show();
+
+
             }
         });
 

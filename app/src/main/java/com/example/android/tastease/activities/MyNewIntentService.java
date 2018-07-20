@@ -25,7 +25,7 @@ public class MyNewIntentService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
 
-        Log.e(MyReceiver.class.getSimpleName(),"Entered MyNewIntentService");
+        Log.e(MyNewIntentService.class.getSimpleName(),"Entered MyNewIntentService");
    NotificationManager notification_manager = (NotificationManager) this
                 .getSystemService(Context.NOTIFICATION_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -50,6 +50,7 @@ public class MyNewIntentService extends IntentService {
                 .setContentText("Hey "+username+". Check out the recipe of the day!We are sure you would love it :)")
                 .setAutoCancel(true)
                 .setContentIntent(pendingIntent);
+        Log.e("notif","Building");
         notification_manager.notify(3000, notification_builder.build());
 
     }

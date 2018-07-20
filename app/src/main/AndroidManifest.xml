@@ -15,11 +15,15 @@
         <receiver
             android:name=".activities.MyReceiver"
             android:enabled="true"
-            android:exported="false" >
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+            </intent-filter>
         </receiver>
         <service
             android:name=".activities.MyNewIntentService"
-            android:exported="false" >
+            android:exported="true" >
         </service>
         <activity android:name=".activities.MainActivity">
 
@@ -42,13 +46,12 @@
         <activity android:name=".activities.MealPlanSearch" />
         <activity android:name=".activities.IngredientSearch"></activity>
         <activity android:name=".activities.ResultIngredientActivity" />
-        <activity android:name=".activities.SplashActivity" android:theme="@style/SplashTheme" >
+        <activity android:name=".activities.SplashActivity"
+            android:theme="@style/SplashTheme" >
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
-
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
     </application>
-
 </manifest>
