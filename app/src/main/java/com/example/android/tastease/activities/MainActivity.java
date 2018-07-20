@@ -1,5 +1,8 @@
 package com.example.android.tastease.activities;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -14,6 +17,8 @@ import android.widget.Toast;
 
 import com.example.android.tastease.R;
 
+import java.util.Calendar;
+
 public class MainActivity extends AppCompatActivity {
     TextView profile;
     Button skip;
@@ -21,6 +26,15 @@ public class MainActivity extends AppCompatActivity {
     String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Intent notifyIntent = new Intent(this,MyReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast
+                (this, 0, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 19);
+        calendar.set(Calendar.MINUTE, 00);
+        calendar.set(Calendar.SECOND, 00);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 1000*60 , pendingIntent);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         profile=findViewById(R.id.profile_settings);
@@ -30,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         fb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadInfo();
+              loadInfo();
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
                 sendIntent
@@ -44,7 +58,8 @@ public class MainActivity extends AppCompatActivity {
                 catch (android.content.ActivityNotFoundException ex) {
                     Toast.makeText(MainActivity.this,"Please Install Facebook Messenger", Toast.LENGTH_LONG).show();
                 }
-            }
+
+          }
         });
         gmail.setOnClickListener(new View.OnClickListener() {
             @Override

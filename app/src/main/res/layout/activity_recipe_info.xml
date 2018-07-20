@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
-                android:src="@mipmap/download" />
+                android:src="@mipmap/icon" />
 
             <TextView
                 android:id="@+id/title"

@@ -1,0 +1,21 @@
+package com.example.android.tastease.activities;
+
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
+import android.widget.Toast;
+
+public class MyReceiver extends BroadcastReceiver {
+    public MyReceiver() {
+    }
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+
+        Intent intent1 = new Intent(context, MyNewIntentService.class);
+        Log.e(MyReceiver.class.getSimpleName(),"Entered MyReceiver");
+
+        context.startService(intent1);
+    }
+}
